@@ -1,0 +1,7 @@
+MONGO_URI=your_uri
+JWT_SECRET=your_secret
+PORT=your_port
+YELP_CONSUMER_KEY=your_consumer_key
+YELP_CONSUMER_SECRET=your_consumer_secret
+YELP_TOKEN=your_token
+YELP_TOKEN_SECRET=your_token_secret

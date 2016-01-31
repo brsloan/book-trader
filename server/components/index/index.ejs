@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Book Trader</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="/app/assets/css/master.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.3.10/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular-ui-router/0.2.10/angular-ui-router.js"></script>
+
+    
+    <script src="/app/app.module.js"></script>
+    <script src="/app/app.routes.js"></script>
+    <script src="/app/shared/auth/authService.js"></script>
+    <script src="/app/shared/bar/barService.js"></script>
+    <script src="/app/shared/user/userService.js"></script>
+    <script src="/app/shared/book/bookService.js"></script>
+    <script src="/app/components/trade/tradeService.js"></script>
+    <script src="/app/shared/navbar/navController.js"></script>
+    <script src="/app/shared/auth/authController.js"></script>
+    <script src="/app/components/home/homeService.js"></script>
+    <script src="/app/components/home/homeController.js"></script>
+    <script src="/app/components/profile/profileController.js"></script>
+    <script src="/app/components/myBooks/myBooksController.js"></script>
+    <script src="/app/components/trade/tradeController.js"></script>
+  </head>
+
+  <body ng-app="bookTrader">
+    <div class="container-fluid">
+
+      <nav class="navbar navbar-right"  ng-controller="NavCtrl">
+        <ul class="nav navbar-nav">
+          <li ng-show="isLoggedIn()"><a href="/#/user/{{currentUser()}}"><span class="glyphicon glyphicon-user"></span> {{ currentUser() }}</a></li>
+          <li ng-show="isLoggedIn()"><a href="/#/home"><i class="fa fa-beer"></i> Home</a></li>
+          <li ng-show="isLoggedIn()"><a href="/#/user/{{currentUser()}}/books"><i class="fa fa-glass"></i> My Books</a></li>
+          <li ng-show="isLoggedIn()"><a href="" ng-click="logOut()"><span class="glyphicon glyphicon-tree-conifer"></span> Log Out</a></li>
+          <li ng-hide="isLoggedIn()"><a href="/#/login"><span class="glyphicon glyphicon-user"></span> Log In</a></li>
+          <li ng-hide="isLoggedIn()"><a href="/#/register"><span class="glyphicon glyphicon-cog"></span> Register</a></li>
+        </ul>
+      </nav>
+
+      <div class="row">
+        <div class="col-md-8 col-md-offset-2">
+          <div class="page-header">
+            <h1 class="title">Book Trader</h1>
+          </div>
+          <ui-view></ui-view>
+        </div>
+      </div>
+  
+    </div>
+    <div id="footer">
+     
+    </div>
+  </body>
+</html>

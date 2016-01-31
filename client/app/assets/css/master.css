@@ -1,0 +1,170 @@
+.trade-btn{
+  position: absolute;
+  right: 25px;
+  top: 12px;
+  color: white;
+  font-size: 16pt;
+  text-shadow: 1px 1px 2px black,
+             -1px -1px 2px black,
+             1px -1px 2px black,
+             -1px 1px 2px black;
+  cursor: pointer;
+  opacity: 0.6;
+}
+
+.book-display{
+  height: 190px;
+  text-align: center;
+
+}
+
+.book-display img{
+  display: block;
+  margin: auto;
+  height: 100%;
+}
+
+.book-display:hover .trade-btn{
+  opacity: 1;
+}
+
+.no-image-book {
+  height: 190px;
+  width: 120px;
+  overflow: hidden;
+  border: 1px solid #ddd;
+  padding: 6px;
+  background-color: #f0f0f0;
+  text-align: center;
+  background-image: url('/app/assets/img/content.jpg');
+  background-size: 100% 100%;
+  color: gold;
+  text-shadow: 1px 1px 2px #555,
+              -1px -1px 1px #555;
+  padding-top: 18px;
+}
+
+.no-image-book-trade {
+  
+}
+
+.trade:hover .trade-btn{
+  opacity: 1;
+}
+
+.trade-divider {
+  text-align: center;
+  padding: 0px;
+  margin: 0px;
+  height: 180px;
+  line-height: 180px;
+}
+
+.trade-divider p{
+  margin: 0px;
+  padding: 0px;
+  font-size: 16pt;
+}
+
+.trade-item p{
+  margin: 0;
+  padding: 0;
+}
+
+.trade .btn{
+  width: 49%;
+  margin-top: 6px;
+}
+
+
+.status {
+  display: block;
+  width: 100%;
+  text-align: center;
+  color: white;
+}
+
+.status-pending{
+  background-color: orange;
+}
+
+.status-rejected {
+  background-color: red;
+}
+
+.status-accepted{
+  background-color: green;
+}
+
+
+
+.bar-image {
+  float: left;
+  margin-right: 12px;
+}
+
+.bar-text{
+  
+}
+
+.bar-block{
+  position: relative;
+}
+
+.clearer {
+  clear: both;
+}
+
+.go-btn{
+  position: absolute;
+  right: 0;
+  top: 0;
+}
+
+.search-bars-btn{
+  float: right;
+}
+
+.subtitle{
+  text-align: right;
+  margin-top: 0;
+  margin-bottom: 0;
+  display: none;
+}
+
+.drinkers_number .bar_goers_list{
+  display: none;
+}
+
+.drinkers_number:hover .bar_goers_list{
+  display: block;
+  position: absolute;
+  top: 100%;
+  left: 0;
+  background-color: #ddd;
+  padding: 3px;
+  width: 100%;
+}
+
+#footer {
+  font-size: 8pt;
+  text-align: center;
+  color: #ccc;
+}
+
+.profile-image img{
+  margin: auto;
+}
+
+.top-profile-field h2{
+  margin-top: 0;
+}
+
+@media only screen and (max-width : 768px) {
+
+.nav li {
+  text-align: center;
+  font-size: 16pt;
+}
+
+}

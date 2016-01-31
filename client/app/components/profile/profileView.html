@@ -1,0 +1,39 @@
+<h1>{{user.username}}</h1>
+
+<div class="col-md-4">
+    <div class="form-group profile-image">
+        <img src="{{user.image_url}}" ng-show="user.image_url" alt="Profile image" class="img-responsive img-rounded"></img>
+        <input type=text ng-model="user.image_url" placeholder="Paste image URL here." class="form-control" ng-show="canEdit"></input>
+    </div>  
+</div>
+
+<div class="col-md-8">
+
+    <div class="form-group top-profile-field">
+    <h2>Name: </h2>
+    <input type="text" ng-model="user.name" placeholder="What is your name?" class="form-control" ng-show="canEdit"></input>
+    <h3 ng-hide="canEdit">{{user.name}}</h3>
+    </div>
+    
+    <div class="form-group">
+    <h2>City: </h2>
+    <input type="text" ng-model="user.city" placeholder="What city are you in?" class="form-control" ng-show="canEdit"></input>
+    <h3 ng-hide="canEdit">{{user.city}}</h3>
+    </div>
+    
+    <div class="form-group">
+    <h2>State: </h2>
+    <input type=text ng-model="user.state" placeholder="State?" class="form-control" ng-show="canEdit"></input>
+    <h3 ng-hide="canEdit">{{user.state}}</h3>
+    </div>
+    
+    <div class="form-group">
+        <button type="submit" ng-click="saveInfo()" class="btn btn-primary" ng-show="canEdit">Save Changes </button>
+        <span ng-show="saveSuccess" class="glyphicon glyphicon-ok" style="color: green;"></span>
+    </div>
+    
+    <div ng-repeat(bar in userBars)>
+        {{bar.id}}
+    </div>
+
+</div>

@@ -1,0 +1,24 @@
+<h1>You have asked to trade for:</h1>
+
+<div class="row">
+    <div class="col-md-4 book-display">
+        <img src="{{reqBook.image_url}}" class="img-responsive"></img>
+    </div>
+    <div class="col-md-8 ">
+      <h1>{{reqBook.title}}</h1>
+      <h2>by {{reqBook.author.firstName}} {{reqBook.author.lastName}}</h2>
+      <h3>Owned by: {{reqBook.user.username}}</h3>
+    </div>
+</div>
+
+<h1>Which book would you like to offer in return?</h1>
+
+<div ng-repeat="book in books | orderBy: 'author.lastName'">
+  <div class="col-md-2 col-sm-3 col-xs-6 btn-default book-display" ng-click="select(book)">
+    <div ng-hide="book.image_url" class="no-image-book">
+      <h3>{{book.title}}</h3>
+      <p>by {{book.author.lastName}}, {{book.author.firstName}}</p>
+    </div>
+    <img src="{{book.image_url}}" class="img-responsive"></img>
+  </div>
+</div>

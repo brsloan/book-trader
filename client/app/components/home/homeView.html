@@ -1,0 +1,97 @@
+<div class="row">
+  <h3>Your Proposed Trades </h3>
+  <div ng-repeat="trade in outgoingTrades " >
+      <div class="col-lg-4 col-sm-6 col-xs-12 trade">
+        <div class="row">
+          <div class="col-xs-5 book-display trade-item">
+              <p>You give</p>
+              <img ng-show="{{trade.bookOffered.image_url}}" src="{{trade.bookOffered.image_url}}" class=""></img>
+              <div ng-hide="trade.bookOffered.image_url" class="no-image-book no-image-book-trade">
+                  <h4>{{trade.bookOffered.title}}</h4>
+                  <p>{{trade.bookOffered.author.firstName}} {{trade.bookOffered.author.lastName}}</p>
+              </div>
+          </div>
+          <div class="col-xs-1 trade-divider">
+            <p><span class="glyphicon glyphicon-transfer"></span></p>
+          </div>
+          <div class="col-xs-5 book-display trade-item">
+              <p>{{trade.receiver.username}} gives</p>
+              <img ng-show="{{trade.bookRequested.image_url}}" src="{{trade.bookRequested.image_url}}" class=""></img>
+               <div ng-hide="trade.bookRequested.image_url" class="no-image-book no-image-book-trade">
+                  <h4>{{trade.bookRequested.title}}</h4>
+                  <p>{{trade.bookRequested.author.firstName}} {{trade.bookRequested.author.lastName}}</p>
+              </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-11">
+            <div class="status status-{{trade.status}}">
+              <p>{{trade.status}}</p>
+            </div>
+          </div>
+        </div>
+        <span ng-click="removeTrade(trade)" class="trade-btn glyphicon glyphicon-remove"></span>
+      </div>
+  </div>
+</div>
+
+<div class="row">
+  <h3>Offered Trades</h3>
+  <div ng-repeat="trade in incomingTrades" >
+      <div class="col-xs-12 col-sm-6 col-lg-4 trade">
+        <div class="row">
+          <div class="col-xs-5 book-display trade-item">
+              <p>{{trade.requester.username}} gives</p>
+              <img ng-show="{{trade.bookOffered.image_url}}" src="{{trade.bookOffered.image_url}}" class=""></img>
+              <div ng-hide="trade.bookOffered.image_url" class="no-image-book no-image-book-trade">
+                  <h4>{{trade.bookOffered.title}}</h4>
+                  <p>{{trade.bookOffered.author.firstName}} {{trade.bookOffered.author.lastName}}</p>
+              </div>
+          </div>
+          <div class="col-xs-1 trade-divider">
+            <p><span class="glyphicon glyphicon-transfer"></span></p>
+          </div>
+          <div class="col-xs-5 book-display trade-item">
+              <p>You give</p>
+              <img ng-show="{{trade.bookRequested.image_url}}" src="{{trade.bookRequested.image_url}}" ></img>
+              <div ng-hide="trade.bookRequested.image_url" class="no-image-book no-image-book-trade">
+                  <h4>{{trade.bookRequested.title}}</h4>
+                  <p>{{trade.bookRequested.author.firstName}} {{trade.bookRequested.author.lastName}}</p>
+              </div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-11" ng-show="trade.status == 'pending'">
+            <div class="btn btn-success" ng-click="acceptTrade(trade)">Approve</div>  
+            <div class="btn btn-danger" ng-click="rejectTrade(trade)">Reject</div>
+          </div>
+        </div>
+        <div class="row">
+          <div class="col-md-11">
+            <div class="status status-{{trade.status}}">
+              <p>{{trade.status}}</p>
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+</div>
+
+
+<div class="row">
+  <h3>All Available Books</h3>
+</div>
+
+
+<div class="row">
+  <div ng-repeat="book in books | orderBy: 'author.lastName + author.firstName' | filter: {user: '!null'}">
+    <div class="col-md-2 col-sm-3 col-xs-6 btn-default book-display">
+      <div ng-hide="book.image_url"  class="no-image-book">
+        <h4>{{book.title}}</h4>
+        <p>{{book.author.firstName}} {{book.author.lastName}}</p>
+      </div>
+      <img src="{{book.image_url}}" class=""></img>
+      <a href="/#/books/trade/{{book._id}}" class="trade-btn"><span ng-show="checkUser(book.user.username)" class="glyphicon glyphicon-transfer"></span></a>
+    </div>
+  </div>
+</div>

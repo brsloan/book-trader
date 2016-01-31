@@ -1,0 +1,44 @@
+<form ng-submit="searchBooks()" >
+  <div class="form-group">
+    <button type="submit" class="btn btn-primary search-bars-btn"><span class="glyphicon glyphicon-ok"></span> Search</button>
+    <div style="overflow: hidden; padding-right: .5em;">
+      <input type="text" class="form-control search-bars" placeholder="Search by title, author, ISBN, etc." ng-model="searchTerm" required></input>
+    </div>
+  </div>
+</form>  
+
+<div class="row">
+<div ng-repeat="book in bookResults">
+    <div class="col-md-2 col-sm-3 col-xs-6 btn-default" ng-click="selectBook(book)">
+        <div ng-hide="book.volumeInfo.imageLinks.thumbnail" style="min-height: 165px;">
+          <h3>{{book.volumeInfo.title}}</h3>
+          <p>by {{book.volumeInfo.authors[0]}}</p>
+        </div>
+      <img src="{{book.volumeInfo.imageLinks.thumbnail}}" class="img-responsive"></img>
+    </div>
+</div>
+</div>
+
+<form ng-submit="saveBook()" >
+  <div class="form-group">
+     <h2>Can't find it? Manually enter a book:</h2>
+    <button type="submit" class="btn btn-primary search-bars-btn"><span class="glyphicon glyphicon-ok"></span> Save Book</button>
+    <div style="overflow: hidden; padding-right: .5em;">
+      <input type="text" class="form-control search-bars" placeholder="Title" ng-model="formData.title" required></input>
+      <input type="text" class="form-control search-bars" placeholder="Author's First Name" ng-model="formData.author.firstName"></input>
+      <input type="text" class="form-control search-bars" placeholder="Author's Last Name" ng-model="formData.author.lastName" required></input>
+      <input type="text" class="form-control search-bars" placeholder="Image URL (optional)" ng-model="formData.image_url" ></input>
+    </div>
+  </div>
+</form>      
+
+<div ng-repeat="book in books | orderBy: 'author.lastName + author.firstName'">
+  <div class="col-lg-2 col-sm-3 col-xs-6 btn-default book-display">
+    <div ng-hide="book.image_url" class="no-image-book">
+      <h4>{{book.title}}</h4>
+      <p>{{book.author.firstName}} {{book.author.lastName}}</p>
+    </div>
+    <img src="{{book.image_url}}" class="img-responsive"></img>
+    <span ng-click="removeBook(book)" class="trade-btn glyphicon glyphicon-remove"></span>
+  </div>
+</div>
