@@ -18,7 +18,6 @@ mongoose.connect(process.env.MONGO_URI);
 
 var indexRoutes = require('./server/components/index/indexRoutes.server.js');
 var userRoutes = require('./server/components/user/userRoutes.server.js');
-var barRoutes = require('./server/components/bar/barRoutes.server.js');
 var bookRoutes = require('./server/components/book/bookRoutes.server.js');
 var tradeRoutes = require('./server/components/trade/tradeRoutes.server.js');
 
@@ -37,7 +36,6 @@ app.use(express.static(path.join(__dirname, 'client')));
 
 app.use('/', indexRoutes);
 app.use('/', userRoutes);
-app.use('/', barRoutes);
 app.use('/', bookRoutes);
 app.use('/', tradeRoutes);
 
