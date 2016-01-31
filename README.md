@@ -1,3 +1,3 @@
 #Book Trader
 
-Allows users to post what books the own and trade them with each other.
+Allows users to post what books they own and trade them with each other.
