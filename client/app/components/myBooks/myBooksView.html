@@ -4,7 +4,7 @@
   <div class="row" ng-show="isLoggedIn">
     <form ng-submit="searchBooks()" >
       <div class="form-group">
-        <button type="submit" class="btn btn-primary search-bars-btn"><span class="glyphicon glyphicon-ok"></span> Search</button>
+        <button type="submit" class="btn btn-primary search-bars-btn"><span class="glyphicon glyphicon-search"></span> Search</button>
         <div style="overflow: hidden; padding-right: .5em;">
           <input type="text" class="form-control search-bars" placeholder="Search by title, author, ISBN, etc." ng-model="searchTerm" required></input>
         </div>
@@ -24,11 +24,11 @@
     </div>
   </div>
   
-  <div class="row">
+    <div class="row" style="margin-top: -15px;">
     <div class="btn" ng-click="toggleManual()">
       <span ng-hide="manualVisible" class="glyphicon glyphicon-chevron-right"></span>
       <span ng-show="manualVisible" class="glyphicon glyphicon-chevron-down"></span>
-      <h4 class="show-trades">Can't find it? Click to manually enter a book.</h4>
+      <p class="show-trades">Can't find it? Click to manually enter a book.</p>
     </div>
   </div>
   
