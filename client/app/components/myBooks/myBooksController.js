@@ -14,7 +14,9 @@ angular.module('bookTrader')
         
         book.getUserBooks(thisUser.username);
         
-        $scope.isLoggedIn = auth.isLoggedIn;
+        $scope.isLoggedIn = auth.isLoggedIn();
+        
+        $scope.canEdit = auth.isLoggedIn && (auth.currentUser() == thisUser.username);
         
         $scope.searchBooks = function(){
             book.searchGoogleBooks($scope.searchTerm, function(data){

@@ -22,6 +22,15 @@ angular.module('bookTrader')
         $scope.acceptTrade = acceptTrade;
         $scope.removeTrade = removeTrade;
         
+        $scope.tradesVisible = false;
+        $scope.numberPending = getNumberTradesPending;
+        
+        $scope.showTrades = function(){
+          $scope.tradesVisible = !$scope.tradesVisible;
+          
+          
+        }
+        
         $scope.checkUser = function(user){
           return auth.isLoggedIn() && user != auth.currentUser();
         }
@@ -36,6 +45,18 @@ angular.module('bookTrader')
         
         function removeTrade(trd){
           trade.deleteTrade(trd);
+        }
+        
+        function getNumberTradesPending(){
+          var numOut = trade.outgoing.filter(function(trade){
+            return trade.status == 'pending';
+          }).length;
+          
+          var numIn = trade.incoming.filter(function(trade){
+            return trade.status == 'pending';
+          }).length;
+          
+          return numOut + numIn;
         }
       }
     ])

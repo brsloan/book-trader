@@ -1,81 +1,92 @@
-<div class="row">
-  <h3>Your Proposed Trades </h3>
-  <div ng-repeat="trade in outgoingTrades " >
-      <div class="col-lg-4 col-sm-6 col-xs-12 trade">
-        <div class="row">
-          <div class="col-xs-5 book-display trade-item">
-              <p>You give</p>
-              <img ng-show="{{trade.bookOffered.image_url}}" src="{{trade.bookOffered.image_url}}" class=""></img>
-              <div ng-hide="trade.bookOffered.image_url" class="no-image-book no-image-book-trade">
-                  <h4>{{trade.bookOffered.title}}</h4>
-                  <p>{{trade.bookOffered.author.firstName}} {{trade.bookOffered.author.lastName}}</p>
-              </div>
-          </div>
-          <div class="col-xs-1 trade-divider">
-            <p><span class="glyphicon glyphicon-transfer"></span></p>
-          </div>
-          <div class="col-xs-5 book-display trade-item">
-              <p>{{trade.receiver.username}} gives</p>
-              <img ng-show="{{trade.bookRequested.image_url}}" src="{{trade.bookRequested.image_url}}" class=""></img>
-               <div ng-hide="trade.bookRequested.image_url" class="no-image-book no-image-book-trade">
-                  <h4>{{trade.bookRequested.title}}</h4>
-                  <p>{{trade.bookRequested.author.firstName}} {{trade.bookRequested.author.lastName}}</p>
-              </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-11">
-            <div class="status status-{{trade.status}}">
-              <p>{{trade.status}}</p>
+
+<div class="btn" ng-click="showTrades()">
+  <span ng-hide="tradesVisible" class="glyphicon glyphicon-chevron-down"></span>
+  <span ng-show="tradesVisible" class="glyphicon glyphicon-chevron-up"></span>
+  <h3  class="show-trades">Show Trades ({{numberPending()}})</h3>
+</div>
+<div ng-show="tradesVisible" class="trades-display">
+  <h4><span class="glyphicon glyphicon-export"></span> Outgoing</h3>
+  <div class="row" ng-show="isLoggedIn">
+    <div ng-repeat="trade in outgoingTrades | filter: {status: 'pending'}">
+        <div class="col-lg-4 col-sm-6 col-xs-12 trade">
+          <div class="row">
+            <div class="col-xs-5 book-display trade-item">
+                <p>You give</p>
+                <img ng-show="{{trade.bookOffered.image_url}}" src="{{trade.bookOffered.image_url}}" class=""></img>
+                <div ng-hide="trade.bookOffered.image_url" class="no-image-book no-image-book-trade">
+                    <h4>{{trade.bookOffered.title}}</h4>
+                    <p>{{trade.bookOffered.author.firstName}} {{trade.bookOffered.author.lastName}}</p>
+                </div>
+            </div>
+            <div class="col-xs-1 trade-divider">
+              <p><span class="glyphicon glyphicon-transfer"></span></p>
+            </div>
+            <div class="col-xs-5 book-display trade-item">
+                <p>{{trade.receiver.username}} gives</p>
+                <img ng-show="{{trade.bookRequested.image_url}}" src="{{trade.bookRequested.image_url}}" class=""></img>
+                 <div ng-hide="trade.bookRequested.image_url" class="no-image-book no-image-book-trade">
+                    <h4>{{trade.bookRequested.title}}</h4>
+                    <p>{{trade.bookRequested.author.firstName}} {{trade.bookRequested.author.lastName}}</p>
+                </div>
             </div>
           </div>
+          <div class="row">
+            <div class="col-md-12">
+              <div class="status status-{{trade.status}}">
+                <p>{{trade.status}}</p>
+              </div>
+            </div>
+          </div>
+          <span ng-click="removeTrade(trade)" ng-show="trade.status == 'pending' " class="trade-btn glyphicon glyphicon-remove"></span>
         </div>
-        <span ng-click="removeTrade(trade)" class="trade-btn glyphicon glyphicon-remove"></span>
-      </div>
+    </div>
+  </div>
+  
+  <h4><span class="glyphicon glyphicon-import"></span> Incoming</h3>
+  <div class="row" ng-show="isLoggedIn">
+    
+    <div ng-repeat="trade in incomingTrades| filter: {status: 'pending'}">
+        <div class="col-xs-12 col-sm-6 col-lg-4 trade">
+          <div class="row">
+            <div class="col-xs-5 book-display trade-item">
+                <p>{{trade.requester.username}} gives</p>
+                <img ng-show="{{trade.bookOffered.image_url}}" src="{{trade.bookOffered.image_url}}" ></img>
+                <div ng-hide="trade.bookOffered.image_url" class="no-image-book no-image-book-trade">
+                    <h4>{{trade.bookOffered.title}}</h4>
+                    <p>{{trade.bookOffered.author.firstName}} {{trade.bookOffered.author.lastName}}</p>
+                </div>
+            </div>
+            <div class="col-xs-1 trade-divider">
+              <p ><span class="glyphicon glyphicon-transfer"></span></p>
+            </div>
+            <div class="col-xs-5 book-display trade-item">
+                <p>You give</p>
+                <img ng-show="{{trade.bookRequested.image_url}}" src="{{trade.bookRequested.image_url}}" ></img>
+                <div ng-hide="trade.bookRequested.image_url" class="no-image-book no-image-book-trade">
+                    <h4>{{trade.bookRequested.title}}</h4>
+                    <p>{{trade.bookRequested.author.firstName}} {{trade.bookRequested.author.lastName}}</p>
+                </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-md-12" ng-show="trade.status == 'pending'">
+              <div class="btn btn-success" ng-click="acceptTrade(trade)">Approve</div>  
+              <div class="btn btn-danger" ng-click="rejectTrade(trade)">Reject</div>
+            </div>
+          </div>
+          <div class="row" ng-hide="trade.status == 'pending'">
+            <div class="col-md-11">
+              <div class="status status-{{trade.status}}">
+                <p>{{trade.status}}</p>
+              </div>
+            </div>
+          </div>
+          
+        </div>
+    </div>
   </div>
 </div>
 
-<div class="row">
-  <h3>Offered Trades</h3>
-  <div ng-repeat="trade in incomingTrades" >
-      <div class="col-xs-12 col-sm-6 col-lg-4 trade">
-        <div class="row">
-          <div class="col-xs-5 book-display trade-item">
-              <p>{{trade.requester.username}} gives</p>
-              <img ng-show="{{trade.bookOffered.image_url}}" src="{{trade.bookOffered.image_url}}" class=""></img>
-              <div ng-hide="trade.bookOffered.image_url" class="no-image-book no-image-book-trade">
-                  <h4>{{trade.bookOffered.title}}</h4>
-                  <p>{{trade.bookOffered.author.firstName}} {{trade.bookOffered.author.lastName}}</p>
-              </div>
-          </div>
-          <div class="col-xs-1 trade-divider">
-            <p><span class="glyphicon glyphicon-transfer"></span></p>
-          </div>
-          <div class="col-xs-5 book-display trade-item">
-              <p>You give</p>
-              <img ng-show="{{trade.bookRequested.image_url}}" src="{{trade.bookRequested.image_url}}" ></img>
-              <div ng-hide="trade.bookRequested.image_url" class="no-image-book no-image-book-trade">
-                  <h4>{{trade.bookRequested.title}}</h4>
-                  <p>{{trade.bookRequested.author.firstName}} {{trade.bookRequested.author.lastName}}</p>
-              </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-11" ng-show="trade.status == 'pending'">
-            <div class="btn btn-success" ng-click="acceptTrade(trade)">Approve</div>  
-            <div class="btn btn-danger" ng-click="rejectTrade(trade)">Reject</div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-md-11">
-            <div class="status status-{{trade.status}}">
-              <p>{{trade.status}}</p>
-            </div>
-          </div>
-        </div>
-      </div>
-  </div>
-</div>
 
 
 <div class="row">
