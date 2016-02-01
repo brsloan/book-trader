@@ -1,12 +1,12 @@
 
-<div class="btn" ng-click="showTrades()">
+<div class="btn" ng-click="showTrades()" ng-show="isLoggedIn">
   <span ng-hide="tradesVisible" class="glyphicon glyphicon-chevron-down"></span>
   <span ng-show="tradesVisible" class="glyphicon glyphicon-chevron-up"></span>
   <h3  class="show-trades">Show Trades ({{numberPending()}})</h3>
 </div>
-<div ng-show="tradesVisible" class="trades-display">
+<div ng-show="tradesVisible && isLoggedIn" class="trades-display">
   <h4><span class="glyphicon glyphicon-export"></span> Outgoing</h3>
-  <div class="row" ng-show="isLoggedIn">
+  <div class="row">
     <div ng-repeat="trade in outgoingTrades | filter: {status: 'pending'}">
         <div class="col-lg-4 col-sm-6 col-xs-12 trade">
           <div class="row">
@@ -43,7 +43,7 @@
   </div>
   
   <h4><span class="glyphicon glyphicon-import"></span> Incoming</h3>
-  <div class="row" ng-show="isLoggedIn">
+  <div class="row">
     
     <div ng-repeat="trade in incomingTrades| filter: {status: 'pending'}">
         <div class="col-xs-12 col-sm-6 col-lg-4 trade">

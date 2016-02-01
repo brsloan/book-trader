@@ -3,6 +3,9 @@
 <div class="col-md-4">
     <div class="form-group profile-image">
         <img src="{{user.image_url}}" ng-show="user.image_url" alt="Profile image" class="img-responsive img-rounded"></img>
+        <div ng-hide="user.image_url" style="text-align: center;">
+            <span class="glyphicon glyphicon-user" style="font-size: 200pt;"></span>
+        </div>
         <input type=text ng-model="user.image_url" placeholder="Paste image URL here." class="form-control" ng-show="canEdit"></input>
     </div>  
 </div>
