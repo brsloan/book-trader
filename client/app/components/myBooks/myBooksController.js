@@ -24,6 +24,9 @@ angular.module('bookTrader')
             $scope.manualVisible = !$scope.manualVisible;
         }
         
+        $scope.canEdit = auth.isLoggedIn && (auth.currentUser() == thisUser.username);
+            
+        
         $scope.searchBooks = function(){
             book.searchGoogleBooks($scope.searchTerm, function(data){
                 console.log(data);

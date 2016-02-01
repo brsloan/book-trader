@@ -96,7 +96,7 @@
 
 
 <div class="row">
-  <div ng-repeat="book in books | orderBy: 'author.lastName + author.firstName' | filter: {user: '!null'}">
+  <div ng-repeat="book in books | orderBy: ['author.lastName', 'author.firstName', 'title'] | filter: {user: '!null'}">
     <div class="col-md-2 col-sm-3 col-xs-6 btn-default book-display">
       <div ng-hide="book.image_url"  class="no-image-book">
         <h4>{{book.title}}</h4>
