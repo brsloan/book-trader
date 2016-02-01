@@ -124,7 +124,8 @@ function TradeHandler(){
     
     function saveAll(arr, cb){
         var toSave = arr.pop();
-        
+
+       
         toSave.save(function(err, item){
            if(err){return err;}
            
@@ -151,9 +152,13 @@ function TradeHandler(){
             trd.reject();
            });
            
-           saveAll(trades, function(item){
-              callback(trades);
-           });;
+           if(trades.length > 0)
+               saveAll(trades, function(item){
+                  callback(trades);
+               });
+           else{
+               callback(trades);
+           }
            
         });
     }
