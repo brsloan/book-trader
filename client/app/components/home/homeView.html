@@ -1,9 +1,10 @@
 
 <div class="btn" ng-click="showTrades()" ng-show="isLoggedIn">
-  <span ng-hide="tradesVisible" class="glyphicon glyphicon-chevron-down"></span>
-  <span ng-show="tradesVisible" class="glyphicon glyphicon-chevron-up"></span>
+  <span ng-hide="tradesVisible" class="glyphicon glyphicon-chevron-right"></span>
+  <span ng-show="tradesVisible" class="glyphicon glyphicon-chevron-down"></span>
   <h3  class="show-trades">Show Trades ({{numberPending()}})</h3>
 </div>
+
 <div ng-show="tradesVisible && isLoggedIn" class="trades-display">
   <h4><span class="glyphicon glyphicon-export"></span> Outgoing</h3>
   <div class="row">
