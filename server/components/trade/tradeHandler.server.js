@@ -94,7 +94,8 @@ function TradeHandler(){
     
     function removeBookAndRelatedTrades(req, res, next){
         //Wrapper for deleting books
-        //
+        //Keeps books with affiliated trades,
+        //only removing the referenced user
         
         Book.findById(req.params.id, function(err, book){
             if(err){ return next(err);}
