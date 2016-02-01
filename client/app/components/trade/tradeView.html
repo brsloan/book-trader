@@ -2,12 +2,17 @@
 
 <div class="row">
     <div class="col-md-4 book-display">
-        <img src="{{reqBook.image_url}}" class="img-responsive"></img>
+        <div ng-hide="{{reqBook.image_url}}" class="no-image-book">
+          <h4>{{reqBook.title}}</h4>
+          <p>by {{reqBook.author.firstName}} {{reqBook.author.lastName}}</p>
+        </div>
+        <img src="{{reqBook.image_url}}" ng-hide="{{reqBook.image_url}}" class="img-responsive"></img>
+        
     </div>
     <div class="col-md-8 ">
       <h1>{{reqBook.title}}</h1>
       <h2>by {{reqBook.author.firstName}} {{reqBook.author.lastName}}</h2>
-      <h3>Owned by: {{reqBook.user.username}}</h3>
+      <h3>Owned by: <a href="/#/user/{{reqBook.user.username}}">{{reqBook.user.username}}</a></h3>
     </div>
 </div>
 
@@ -16,7 +21,7 @@
 <div ng-repeat="book in books | orderBy: 'author.lastName'">
   <div class="col-md-2 col-sm-3 col-xs-6 btn-default book-display" ng-click="select(book)">
     <div ng-hide="book.image_url" class="no-image-book">
-      <h3>{{book.title}}</h3>
+      <h4>{{book.title}}</h4>
       <p>by {{book.author.lastName}}, {{book.author.firstName}}</p>
     </div>
     <img src="{{book.image_url}}" class="img-responsive"></img>

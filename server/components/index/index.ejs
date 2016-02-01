@@ -32,9 +32,9 @@
       <nav class="navbar navbar-right"  ng-controller="NavCtrl">
         <ul class="nav navbar-nav">
           <li ng-show="isLoggedIn()"><a href="/#/user/{{currentUser()}}"><span class="glyphicon glyphicon-user"></span> {{ currentUser() }}</a></li>
-          <li ng-show="isLoggedIn()"><a href="/#/home"><i class="fa fa-beer"></i> Home</a></li>
-          <li ng-show="isLoggedIn()"><a href="/#/user/{{currentUser()}}/books"><i class="fa fa-glass"></i> My Books</a></li>
-          <li ng-show="isLoggedIn()"><a href="" ng-click="logOut()"><span class="glyphicon glyphicon-tree-conifer"></span> Log Out</a></li>
+          <li ng-show="isLoggedIn()"><a href="/#/home"><i class="fa fa-home"></i> Home</a></li>
+          <li ng-show="isLoggedIn()"><a href="/#/user/{{currentUser()}}/books"><i class="fa fa-book"></i> My Books</a></li>
+          <li ng-show="isLoggedIn()"><a href="" ng-click="logOut()"><span class="glyphicon glyphicon-log-out"></span> Log Out</a></li>
           <li ng-hide="isLoggedIn()"><a href="/#/login"><span class="glyphicon glyphicon-user"></span> Log In</a></li>
           <li ng-hide="isLoggedIn()"><a href="/#/register"><span class="glyphicon glyphicon-cog"></span> Register</a></li>
         </ul>
