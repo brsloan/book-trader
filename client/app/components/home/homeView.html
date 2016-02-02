@@ -3,12 +3,19 @@
   <span ng-hide="tradesVisible" class="glyphicon glyphicon-chevron-right"></span>
   <span ng-show="tradesVisible" class="glyphicon glyphicon-chevron-down"></span>
   <h3  class="show-trades">Show Trades ({{numberPending()}})</h3>
+  
 </div>
 
 <div ng-show="tradesVisible && isLoggedIn" class="trades-display">
+  <div class="status-filters">
+    <div class="status-pending"><input type="checkbox" ng-click="includeTrade('pending')" checked="true"> Pending </div>
+    <div class="status-accepted"><input type="checkbox" ng-click="includeTrade('accepted')"> Accepted </div>
+    <div class="status-rejected"><input type="checkbox" ng-click="includeTrade('rejected')"> Rejected </div>
+  </div>
+  
   <h4><span class="glyphicon glyphicon-export"></span> Outgoing</h3>
   <div class="row">
-    <div ng-repeat="trade in outgoingTrades | filter: {status: 'pending'}">
+    <div ng-repeat="trade in outgoingTrades | filter: filterTrades">
         <div class="col-lg-4 col-sm-6 col-xs-12 trade">
           <div class="row">
             <div class="col-xs-5 book-display trade-item">
@@ -46,7 +53,7 @@
   <h4><span class="glyphicon glyphicon-import"></span> Incoming</h3>
   <div class="row">
     
-    <div ng-repeat="trade in incomingTrades| filter: {status: 'pending'}">
+    <div ng-repeat="trade in incomingTrades| filter: filterTrades">
         <div class="col-xs-12 col-sm-6 col-lg-4 trade">
           <div class="row">
             <div class="col-xs-5 book-display trade-item">

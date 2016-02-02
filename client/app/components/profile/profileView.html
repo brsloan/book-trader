@@ -10,7 +10,7 @@
     </div>  
 </div>
 
-<div class="col-md-8">
+<div class="col-md-8 user-info">
 
     <div class="form-group top-profile-field">
     <h2>Name: </h2>
@@ -39,4 +39,19 @@
         {{bar.id}}
     </div>
 
+</div>
+
+<h3>{{user.username}}'s Books</h3>
+
+<div class="row">
+  <div ng-repeat="book in books | orderBy: 'author.lastName + author.firstName'">
+    <div class="col-lg-2 col-sm-3 col-xs-6 btn-default book-display">
+      <div ng-hide="book.image_url" class="no-image-book">
+        <h4>{{book.title}}</h4>
+        <p>{{book.author.firstName}} {{book.author.lastName}}</p>
+      </div>
+      <img src="{{book.image_url}}" class="img-responsive"></img>
+      <a href="/#/books/trade/{{book._id}}" class="trade-btn"><span ng-show="checkUser(book.user.username)" class="glyphicon glyphicon-transfer"></span></a>
+    </div>
+  </div>
 </div>

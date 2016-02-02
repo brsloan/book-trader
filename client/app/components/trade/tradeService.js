@@ -58,7 +58,7 @@ angular.module('bookTrader')
             $http.put('/trades/' + trade._id + '/accept', {}, {
                 headers: {Authorization: 'Bearer '+ auth.getToken()}
             }).success(function(trd){
-                trade.status = trd.status;
+                assignStatusToMatchingTrade(trade, 'accepted');
                 rejectRelatedTrades(trade);
             });
         }
@@ -67,7 +67,7 @@ angular.module('bookTrader')
             $http.put('/trades/' + trade._id + '/reject', {}, {
                 headers: {Authorization: 'Bearer '+ auth.getToken()}
             }).success(function(trd){
-                trade.status = trd.status;
+                assignStatusToMatchingTrade(trade, 'rejected');
             });
         }
         
@@ -90,6 +90,17 @@ angular.module('bookTrader')
             }).forEach(function(trd){
                 trd.status = 'rejected';
             });
+        }
+        
+        function assignStatusToMatchingTrade(trade,status){
+            var outIndex = o.outgoing.indexOf(trade);
+            if(outIndex > -1)
+                o.outgoing[outIndex].status = status;
+            else {
+                var inIndex = o.incoming.indexOf(trade);
+                if(inIndex > -1)
+                    o.incoming[inIndex].status = status;
+            }
         }
         
     }]);

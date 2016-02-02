@@ -116,6 +116,16 @@ body{
   background-color: #7b9f35;
 }
 
+.status-filters div{
+  display: inline-block;
+  color: white;
+  margin-right: 3px;
+  padding: 3px;
+  border-radius: 2px;
+  padding-left: 6px;
+  padding-right: 6px;
+}
+
 .show-trades{
   display: inline-block;
 }
@@ -124,6 +134,10 @@ body{
   border-top: 1px solid #ddd;
   border-bottom: 1px solid #ddd;
   padding: 6px;
+}
+
+.user-info h3{
+  margin-left: 30px;
 }
 
 .clearer {

@@ -4,12 +4,21 @@ angular.module('bookTrader')
         'user',
         'auth',
         'thisUser',
-        function($scope, user, auth, thisUser){
+        'book',
+        function($scope, user, auth, thisUser, book){
             var formData = {};
             $scope.formData = formData;
             $scope.user = thisUser;
             $scope.saveInfo = saveInfo;
             $scope.canEdit = auth.isLoggedIn && (auth.currentUser() == thisUser.username);
+            $scope.books = book.myBooks;
+            
+            book.getUserBooks(thisUser.username);
+            
+            $scope.checkUser = function(user){
+              return auth.isLoggedIn() && user != auth.currentUser();
+            }
+            
             
             function saveInfo(){
                 $scope.saveSuccess = false;

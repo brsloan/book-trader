@@ -27,8 +27,26 @@ angular.module('bookTrader')
         
         $scope.showTrades = function(){
           $scope.tradesVisible = !$scope.tradesVisible;
+        };
+        
+        var activeFilters = ['pending'];
+        
+        $scope.includeTrade = function(status){
+          var statIndex = activeFilters.indexOf(status);
           
+          if(statIndex > -1)
+            activeFilters.splice(statIndex, 1);
+          else
+            activeFilters.push(status);  
+        }
+        
+        $scope.filterTrades = function(trd){
+          var statIndex = activeFilters.indexOf(trd.status);
           
+          if(statIndex > -1)
+            return true;
+          else
+            return false;
         }
         
         $scope.checkUser = function(user){
