@@ -2,7 +2,7 @@
 <div class="row">
 <div class="col-md-4">
     <div class="form-group profile-image">
-        <img src="{{user.image_url}}" ng-show="user.image_url" alt="Profile image" class="img-responsive img-rounded"></img>
+        <img src="{{user.image_url}}" ng-show="user.image_url" alt="Profile image" class="img-responsive img-rounded" alt="user profile image"></img>
         <div ng-hide="user.image_url" style="text-align: center;">
             <span class="glyphicon glyphicon-user" style="font-size: 200pt;"></span>
         </div>
@@ -13,30 +13,26 @@
 <div class="col-md-8 user-info">
 
     <div class="form-group top-profile-field">
-    <h2>Name: </h2>
-    <input type="text" ng-model="user.name" placeholder="What is your name?" class="form-control" ng-show="canEdit"></input>
-    <h3 ng-hide="canEdit">{{user.name}}</h3>
+        <h2>Name: </h2>
+        <input type="text" ng-model="user.name" placeholder="What is your name?" class="form-control" ng-show="canEdit"></input>
+        <h3 ng-hide="canEdit">{{user.name}}</h3>
     </div>
     
     <div class="form-group">
-    <h2>City: </h2>
-    <input type="text" ng-model="user.city" placeholder="What city are you in?" class="form-control" ng-show="canEdit"></input>
-    <h3 ng-hide="canEdit">{{user.city}}</h3>
+        <h2>City: </h2>
+        <input type="text" ng-model="user.city" placeholder="What city are you in?" class="form-control" ng-show="canEdit"></input>
+        <h3 ng-hide="canEdit">{{user.city}}</h3>
     </div>
     
     <div class="form-group">
-    <h2>State: </h2>
-    <input type=text ng-model="user.state" placeholder="State?" class="form-control" ng-show="canEdit"></input>
-    <h3 ng-hide="canEdit">{{user.state}}</h3>
+        <h2>State: </h2>
+        <input type=text ng-model="user.state" placeholder="State?" class="form-control" ng-show="canEdit"></input>
+        <h3 ng-hide="canEdit">{{user.state}}</h3>
     </div>
     
     <div class="form-group">
         <button type="submit" ng-click="saveInfo()" class="btn btn-primary" ng-show="canEdit">Save Changes </button>
         <span ng-show="saveSuccess" class="glyphicon glyphicon-ok" style="color: green;"></span>
-    </div>
-    
-    <div ng-repeat(bar in userBars)>
-        {{bar.id}}
     </div>
 
 </div>
@@ -46,12 +42,12 @@
 <div class="row">
   <div ng-repeat="book in books | orderBy: 'author.lastName + author.firstName'">
     <a href="/#/books/{{book._id}}">
-        <div class="col-lg-2 col-sm-3 col-xs-6 btn-default book-display">
+        <div class="col-lg-2 col-sm-3 col-xs-6 btn-default book-display" data-toggle="tooltip" title="{{book.title}} by {{book.author.firstName}} {{book.author.lastName}}">
           <div ng-hide="book.image_url" class="no-image-book">
             <h4>{{book.title}}</h4>
             <p>{{book.author.firstName}} {{book.author.lastName}}</p>
           </div>
-          <img src="{{book.image_url}}" class="img-responsive"></img>
+          <img src="{{book.image_url}}" alt="Book Cover for {{book.title}} by {{book.author.firstName}} {{book.author.lastName}}"></img>
           <a href="/#/books/trade/{{book._id}}" class="trade-btn"><span ng-show="checkUser(book.user.username)" class="glyphicon glyphicon-transfer"></span></a>
         </div>
     </a>

@@ -105,12 +105,12 @@
 <div class="row">
   <div ng-repeat="book in books | orderBy: ['author.lastName', 'author.firstName', 'title'] | filter: {user: '!null'}">
     <a href="/#/books/{{book._id}}">
-      <div class="col-md-2 col-sm-3 col-xs-6 btn-default book-display">
+      <div data-toggle="tooltip" title="{{book.title}} by {{book.author.firstName}} {{book.author.lastName}}" class="col-md-2 col-sm-3 col-xs-6 btn-default book-display">
         <div ng-hide="book.image_url"  class="no-image-book">
           <h4>{{book.title}}</h4>
           <p>{{book.author.firstName}} {{book.author.lastName}}</p>
         </div>
-        <img src="{{book.image_url}}" class=""></img>
+        <img src="{{book.image_url}}" ng-show="book.image_url" alt="Book Cover for {{book.title}} by {{book.author.firstName}} {{book.author.lastName}}"></img>
         <a href="/#/books/trade/{{book._id}}" class="trade-btn"><span ng-show="checkUser(book.user.username)" class="glyphicon glyphicon-transfer"></span></a>
       </div>
     </a>

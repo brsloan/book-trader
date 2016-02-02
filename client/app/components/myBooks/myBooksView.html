@@ -54,12 +54,12 @@
 <div class="row">
   <div ng-repeat="book in books | orderBy: 'author.lastName + author.firstName'">
     <a href="/#/books/{{book._id}}">
-      <div class="col-lg-2 col-sm-3 col-xs-6 btn-default book-display">
+      <div class="col-lg-2 col-sm-3 col-xs-6 btn-default book-display" data-toggle="tooltip" title="{{book.title}} by {{book.author.firstName}} {{book.author.lastName}}">
         <div ng-hide="book.image_url" class="no-image-book">
           <h4>{{book.title}}</h4>
           <p>{{book.author.firstName}} {{book.author.lastName}}</p>
         </div>
-        <img src="{{book.image_url}}" class="img-responsive"></img>
+        <img src="{{book.image_url}}" class="img-responsive" alt="Cover for {{book.title}} by {{book.author.firstName}} {{book.author.lastName}}"></img>
         <span ng-click="removeBook(book)" ng-show="canEdit" class="trade-btn glyphicon glyphicon-remove"></span>
       </div>
     </a>
