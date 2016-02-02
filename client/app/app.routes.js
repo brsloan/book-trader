@@ -45,6 +45,22 @@ angular.module('bookTrader')
               }]
             }
           })
+          .state('book',{
+            url: '/books/{bookId}',
+            templateUrl: 'app/components/book/bookView.html',
+            controller: 'BookCtrl',
+            resolve: {
+              reqBook: ['$stateParams', 'book', function($stateParams, book){
+                if(book.books.length == 0){ 
+                  return book.getBook($stateParams.bookId); 
+                }
+              
+                return book.books.filter(function(bk){
+                  return bk._id == $stateParams.bookId;
+                })[0];
+              }]
+            }
+          })
           .state('login',{
             url: '/login',
             templateUrl: '/app/components/login/loginView.html',

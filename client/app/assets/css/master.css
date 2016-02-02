@@ -25,6 +25,10 @@ body{
   margin-top: 6px;
 }
 
+.book-display a:hover{
+  text-decoration: none;
+}
+
 .book-display img{
   display: block;
   margin: auto;

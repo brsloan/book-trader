@@ -1,0 +1,16 @@
+<div class="row">
+    <div class="col-md-4 book-display">
+        <div ng-hide="reqBook.image_url" class="no-image-book">
+          <h4>{{reqBook.title}}</h4>
+          <p>by {{reqBook.author.firstName}} {{reqBook.author.lastName}}</p>
+        </div>
+        
+        <img src="{{reqBook.image_url}}" ng-show="reqBook.image_url" class="img-responsive"></img>
+        
+    </div>
+    <div class="col-md-8 ">
+      <h1>{{reqBook.title}}</h1>
+      <h2>by {{reqBook.author.firstName}} {{reqBook.author.lastName}}</h2>
+      <h3>Owned by: <a href="/#/user/{{reqBook.user.username}}">{{reqBook.user.username}}</a></h3>
+    </div>
+</div>
