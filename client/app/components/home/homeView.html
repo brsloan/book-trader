@@ -18,9 +18,9 @@
     <div ng-repeat="trade in outgoingTrades | filter: filterTrades">
         <div class="col-lg-4 col-sm-6 col-xs-12 trade">
           <div class="row">
-            <div class="col-xs-5 book-display trade-item">
+            <div class="col-xs-5 book-display trade-item" data-toggle="tooltip" title="{{trade.bookOffered.title}} by {{trade.bookOffered.author.firstName}} {{trade.bookOffered.author.lastName}}">
                 <p>You give</p>
-                <img ng-show="{{trade.bookOffered.image_url}}" src="{{trade.bookOffered.image_url}}" class=""></img>
+                <img ng-show="{{trade.bookOffered.image_url}}" src="{{trade.bookOffered.image_url}}" alt="Book Cover"></img>
                 <div ng-hide="trade.bookOffered.image_url" class="no-image-book no-image-book-trade">
                     <h4>{{trade.bookOffered.title}}</h4>
                     <p>{{trade.bookOffered.author.firstName}} {{trade.bookOffered.author.lastName}}</p>
@@ -29,9 +29,9 @@
             <div class="col-xs-1 trade-divider">
               <p><span class="glyphicon glyphicon-transfer"></span></p>
             </div>
-            <div class="col-xs-5 book-display trade-item">
+            <div class="col-xs-5 book-display trade-item" data-toggle="tooltip" title="{{trade.bookRequested.title}} by {{trade.bookRequested.author.firstName}} {{trade.bookRequested.author.lastName}}">
                 <p>{{trade.receiver.username}} gives</p>
-                <img ng-show="{{trade.bookRequested.image_url}}" src="{{trade.bookRequested.image_url}}" class=""></img>
+                <img ng-show="{{trade.bookRequested.image_url}}" src="{{trade.bookRequested.image_url}}" alt="Book Cover"></img>
                  <div ng-hide="trade.bookRequested.image_url" class="no-image-book no-image-book-trade">
                     <h4>{{trade.bookRequested.title}}</h4>
                     <p>{{trade.bookRequested.author.firstName}} {{trade.bookRequested.author.lastName}}</p>
